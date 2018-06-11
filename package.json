@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "client": "cd client && yarn start",
-    "client-install": "cd client && yarn install",
+    "install:client": "cd client && yarn install",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "server": "nodemon server.js"
   },
