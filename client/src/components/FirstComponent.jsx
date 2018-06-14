@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class FirstComponent extends Component {
   constructor() {
     super();
 
     this.state = {
-      fromServer: '',
+      fromServer: ""
     };
   }
 
   componentDidMount() {
     const someApiRequest = async () => {
-      // CORS PROBLEM WTF?
-      const response = await fetch('/api/test');
+      const response = await fetch("/api/test");
       const json = await response.json();
       this.setState({ fromServer: json });
     };
