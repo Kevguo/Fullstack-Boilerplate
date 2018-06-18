@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd ../client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "server": "nodemon --exec babel-node server.js"
+    "server": "nodemon --exec babel-node src/server.js"
   },
   "babel": {
     "presets": [
