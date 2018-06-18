@@ -1,6 +1,6 @@
-const webpack = require("webpack");
+import webpack from "webpack";
 
-module.exports = {
+export default {
   entry: ["babel-polyfill", "react-hot-loader/patch", "./src/index.jsx"],
   output: {
     path: `${__dirname}/dist`,
