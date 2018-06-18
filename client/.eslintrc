@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "linebreak-style": ["error", "windows"]
+  },
+  "env": {
+    "browser": true
+  }
+}

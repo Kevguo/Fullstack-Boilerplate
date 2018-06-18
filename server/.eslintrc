@@ -1,0 +1,10 @@
+{
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "rules": {
+    "linebreak-style": ["error", "windows"],
+    "no-console": "off"
+  },
+  "env": {
+    "node": true
+  }
+}
