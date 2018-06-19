@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.babel.js --mode development",
+    "client": "webpack-dev-server --config ./webpack.config.babel.js --mode development",
+    "server": "cd ../server && yarn server",
+    "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
     "build": "webpack --config ./webpack.config.js --mode production"
   },
   "babel": {

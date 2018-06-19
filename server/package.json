@@ -4,9 +4,9 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "client": "cd ../client && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "server": "nodemon --exec babel-node src/server.js"
+    "client": "cd ../client && yarn client",
+    "server": "nodemon --exec babel-node src/server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
   },
   "babel": {
     "presets": [
