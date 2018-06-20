@@ -4,11 +4,12 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>React webpack babel</title>
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
 </head>
 
 <body>
   <div id="root"></div>
-  <script src="bundle.js"></script>
+  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
 
 </html>

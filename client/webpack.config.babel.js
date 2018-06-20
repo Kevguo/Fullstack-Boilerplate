@@ -1,25 +1,47 @@
-import webpack from "webpack";
+import Webpack from "webpack";
+import path from "path";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CleanWebpackPlugin from "clean-webpack-plugin";
 
-export default {
+const settings = {
   entry: ["babel-polyfill", "./src/index.jsx"],
   output: {
-    path: `${__dirname}/dist`,
-    publicPath: "/",
-    filename: "bundle.js"
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].[hash].js"
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       }
     ]
   },
+  plugins: [
+    new Webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin("dist", {}),
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].css"
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: "./src/index.html",
+      filename: "index.html"
+    })
+  ],
   resolve: {
     extensions: ["*", ".js", ".jsx"]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: "./dist",
     hot: true,
@@ -29,3 +51,5 @@ export default {
     stats: "errors-only"
   }
 };
+
+export default settings;
