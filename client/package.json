@@ -6,8 +6,8 @@
   "scripts": {
     "client": "webpack-dev-server --config ./webpack.config.babel.js --mode development",
     "server": "cd ../server && yarn server",
-    "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
-    "build": "webpack --config ./webpack.config.babel.js --mode production"
+    "dev": "set NODE_ENV=development&& concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
+    "build": "set NODE_ENV=production&& webpack --config ./webpack.config.babel.js --mode production"
   },
   "babel": {
     "presets": [
