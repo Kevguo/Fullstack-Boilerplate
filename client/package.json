@@ -7,7 +7,7 @@
     "client": "webpack-dev-server --config ./webpack.config.babel.js --mode development",
     "server": "cd ../server && yarn server",
     "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
-    "build": "webpack --config ./webpack.config.js --mode production"
+    "build": "webpack --config ./webpack.config.babel.js --mode production"
   },
   "babel": {
     "presets": [
@@ -23,6 +23,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "concurrently": "^3.6.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",

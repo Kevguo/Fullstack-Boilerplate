@@ -1,12 +1,12 @@
 To Run:
 
 ```
+/server
 yarn install
-yarn install:client
+/client
+yarn install
 
 yarn dev
 ```
 
 Dev Server: http://localhost:8080/
-
-TODO: Add Generic Build Scripts
