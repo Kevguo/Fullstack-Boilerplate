@@ -1,7 +1,7 @@
 import webpack from "webpack";
 
 export default {
-  entry: ["babel-polyfill", "react-hot-loader/patch", "./src/index.jsx"],
+  entry: ["babel-polyfill", "./src/index.jsx"],
   output: {
     path: `${__dirname}/dist`,
     publicPath: "/",
