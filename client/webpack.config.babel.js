@@ -1,5 +1,6 @@
 import Webpack from "webpack";
 import path from "path";
+
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CleanWebpackPlugin from "clean-webpack-plugin";
@@ -7,9 +8,9 @@ import CleanWebpackPlugin from "clean-webpack-plugin";
 const devMode = process.env.NODE_ENV !== "production";
 
 const settings = {
-  entry: ["babel-polyfill", "./src/index.jsx"],
+  entry: ["babel-polyfill", "./src/frontend/index.jsx"],
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
     filename: "[name].[hash].js"
   },
   module: {
@@ -22,18 +23,18 @@ const settings = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           devMode ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
-          "sass-loader"
+          "postcss-loader"
         ]
       }
     ]
   },
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin("dist", {}),
+    new CleanWebpackPlugin("build", {}),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[id].css"
@@ -41,7 +42,7 @@ const settings = {
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: "./src/index.html",
+      template: "./src/www/index.html",
       filename: "index.html"
     })
   ],
@@ -49,7 +50,7 @@ const settings = {
     extensions: ["*", ".js", ".jsx"]
   },
   devServer: {
-    contentBase: "./dist",
+    contentBase: path.resolve("src/www"),
     hot: true,
     proxy: {
       "/api": "http://localhost:5000"

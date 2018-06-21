@@ -1,0 +1,7 @@
+@import "./components/FirstComponent";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
