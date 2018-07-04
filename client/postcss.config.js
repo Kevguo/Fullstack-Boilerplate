@@ -3,6 +3,11 @@ module.exports = {
     "postcss-import": {
       root: __dirname
     },
-    "postcss-cssnext": {}
+    "postcss-preset-env": {
+      stage: 3,
+      features: {
+        "nesting-rules": true
+      }
+    }
   }
 };
