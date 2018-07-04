@@ -1,18 +1,40 @@
 import express from "express";
-import path from "path";
+import bodyParser from "body-parser";
+import { graphiqlExpress, graphqlExpress } from "apollo-server-express";
+import { makeExecutableSchema } from "graphql-tools";
+import mongoose from "mongoose";
+
+import typeDefs from "./schema";
+import resolvers from "./resolvers";
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+
+mongoose.connect(
+  "mongodb://kevguo:Y0h0b0y0..@ds163530.mlab.com:63530/onetwoonetwo",
+  { useNewUrlParser: true }
+);
+mongoose.connection.on("connected", () => {
+  console.log("Mongoose connected to database");
+});
+mongoose.connection.on("error", err => {
+  console.log(`Mongoose connection error: ${err}`);
+});
+
+const Cat = mongoose.model("Cat", { name: String });
 
 const app = express();
 
-app.get("/api/test", (req, res) => {
-  res.json({ response: "From Server" });
-});
+app.use(
+  "/graphql",
+  bodyParser.json(),
+  graphqlExpress({ schema, context: { Cat } })
+);
 
-app.use(express.static(path.join(__dirname, "../../client/build/")));
+app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
-});
-
-const PORT = process.env.PORT || 5050;
+const PORT = 5500;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
