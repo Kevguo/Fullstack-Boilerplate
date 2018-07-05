@@ -3,12 +3,17 @@
 
 <head lang="en">
   <meta charset="UTF-8">
-  <title>React webpack babel</title>
-  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <link rel="icon" href="<%= htmlWebpackPlugin.files.favicon.ico %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.main.css %>">
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+  </div>
   <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
 

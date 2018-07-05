@@ -1,6 +1,5 @@
 import Webpack from "webpack";
 import path from "path";
-
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CleanWebpackPlugin from "clean-webpack-plugin";
@@ -43,7 +42,9 @@ const settings = {
       inject: false,
       hash: true,
       template: "./src/www/index.html",
-      filename: "index.html"
+      title: "graphql_demo",
+      filename: "index.html",
+      favicon: "./src/img/favicon.ico"
     })
   ],
   resolve: {
@@ -53,7 +54,7 @@ const settings = {
     contentBase: path.resolve("src/www"),
     hot: true,
     proxy: {
-      "/api": "http://localhost:5000"
+      "/graphql": "http://localhost:5050"
     },
     stats: "errors-only"
   }

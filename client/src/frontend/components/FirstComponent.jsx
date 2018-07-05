@@ -1,4 +1,16 @@
 import React, { Component } from "react";
+import { createApolloFetch } from "apollo-fetch";
+import gql from "graphql-tag";
+
+const apolloFetch = createApolloFetch({ uri: "/graphql" });
+
+const query = gql`
+  {
+    allCats {
+      name
+    }
+  }
+`;
 
 class FirstComponent extends Component {
   constructor() {
@@ -10,18 +22,18 @@ class FirstComponent extends Component {
   }
 
   componentDidMount() {
-    const someApiRequest = async () => {
-      const response = await fetch("/api/test");
-      const json = await response.json();
+    const graphAPIRequest = async () => {
+      const response = await apolloFetch({ query });
+      const json = response.data;
       this.setState({ fromServer: json });
     };
-    someApiRequest();
+    graphAPIRequest();
   }
 
   render() {
     const { fromServer } = this.state;
 
-    return <h1>{fromServer.response}</h1>;
+    return <h1>{JSON.stringify(fromServer)}</h1>;
   }
 }
 
