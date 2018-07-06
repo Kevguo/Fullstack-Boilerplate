@@ -1,7 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import { ApolloProvider } from "react-apollo";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import client from "./apollo";
+
+import FirstComponent from "./components/FirstComponent";
+
+const App = (
+  <ApolloProvider client={client}>
+    <FirstComponent />
+  </ApolloProvider>
+);
+
+ReactDOM.render(App, document.getElementById("root"));
 
 module.hot.accept();

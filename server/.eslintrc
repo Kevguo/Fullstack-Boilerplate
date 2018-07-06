@@ -2,7 +2,8 @@
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "rules": {
     "linebreak-style": ["error", "windows"],
-    "no-console": "off"
+    "no-console": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   },
   "env": {
     "node": true

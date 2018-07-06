@@ -1,39 +1,29 @@
 import React, { Component } from "react";
-import { createApolloFetch } from "apollo-fetch";
 import gql from "graphql-tag";
+import { Query } from "react-apollo";
+import "./FirstComponent.css";
 
-const apolloFetch = createApolloFetch({ uri: "/graphql" });
-
-const query = gql`
+const GET_CATS = gql`
   {
     allCats {
+      _id
       name
     }
   }
 `;
 
 class FirstComponent extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      fromServer: ""
-    };
-  }
-
-  componentDidMount() {
-    const graphAPIRequest = async () => {
-      const response = await apolloFetch({ query });
-      const json = response.data;
-      this.setState({ fromServer: json });
-    };
-    graphAPIRequest();
-  }
-
   render() {
-    const { fromServer } = this.state;
+    return (
+      <Query query={GET_CATS}>
+        {({ loading, error, data }) => {
+          if (loading) return "Loading...";
+          if (error) return `Error! ${error.message}`;
 
-    return <h1>{JSON.stringify(fromServer)}</h1>;
+          return data.allCats.map(cat => <h1 key={cat._id}>{cat.name}</h1>);
+        }}
+      </Query>
+    );
   }
 }
 
