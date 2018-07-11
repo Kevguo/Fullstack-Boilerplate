@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd ../client && yarn client",
     "server": "nodemon --exec babel-node src/server.js",
-    "dev": "set NODE_ENV=development&& concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
+    "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
   },
   "babel": {
     "presets": [
@@ -19,6 +19,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "concurrently": "^3.5.1",
+    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "12.1.0",
