@@ -6,8 +6,8 @@
   "scripts": {
     "client": "webpack-dev-server --config ./webpack.config.babel.js --mode development",
     "server": "cd ../server && yarn server",
-    "dev": "set NODE_ENV=development&& concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
-    "build": "set NODE_ENV=production&& webpack --config ./webpack.config.babel.js --mode production"
+    "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.babel.js --mode production"
   },
   "babel": {
     "presets": [
@@ -25,6 +25,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.6.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
