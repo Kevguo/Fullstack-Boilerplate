@@ -7,9 +7,9 @@ import CleanWebpackPlugin from "clean-webpack-plugin";
 const devMode = process.env.NODE_ENV !== "production";
 
 const settings = {
-  entry: ["babel-polyfill", "./src/frontend/index.jsx"],
+  entry: ["babel-polyfill", "./client/src/frontend/index.jsx"],
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].js"
   },
   module: {
@@ -33,7 +33,7 @@ const settings = {
   },
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin("build", {}),
+    new CleanWebpackPlugin("dist", {}),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[id].css"
@@ -41,17 +41,17 @@ const settings = {
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: "./src/www/index.html",
-      title: "graphql_demo",
+      template: "./client/src/www/index.html",
+      title: "Boilerplate",
       filename: "index.html",
-      favicon: "./src/img/favicon.ico"
+      favicon: "./client/src/www/react.ico"
     })
   ],
   resolve: {
     extensions: ["*", ".js", ".jsx"]
   },
   devServer: {
-    contentBase: path.resolve("src/www"),
+    contentBase: path.resolve("./client/src/www"),
     hot: true,
     proxy: {
       "/graphql": "http://localhost:5050"

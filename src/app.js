@@ -3,7 +3,9 @@ import bodyParser from "body-parser";
 import { graphiqlExpress, graphqlExpress } from "apollo-server-express";
 import { makeExecutableSchema } from "graphql-tools";
 import mongoose from "mongoose";
+import path from "path";
 
+import configs from "./configs";
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
 
@@ -13,9 +15,10 @@ const schema = makeExecutableSchema({
 });
 
 mongoose.connect(
-  "mongodb://kevguo:Y0h0b0y0..@ds163530.mlab.com:63530/onetwoonetwo",
+  configs.dbURL,
   { useNewUrlParser: true }
 );
+
 mongoose.connection.on("connected", () => {
   console.log("Mongoose connected to database");
 });
@@ -34,6 +37,12 @@ app.use(
 );
 
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+
+app.use(express.static(path.join(__dirname, "../dist/")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
 
 const PORT = process.env.PORT || 5050;
 
