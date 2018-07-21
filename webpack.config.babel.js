@@ -44,7 +44,7 @@ const settings = {
       template: "./client/src/www/index.html",
       title: "Boilerplate",
       filename: "index.html",
-      favicon: "./client/src/www/react.ico"
+      favicon: "./client/src/www/favicon.ico"
     })
   ],
   resolve: {
