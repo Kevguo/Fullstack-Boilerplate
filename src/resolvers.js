@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   Query: {
     allCats: async (parent, args, { Cat }) => {
       // { _id: 123123, name: "whatever"}

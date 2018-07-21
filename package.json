@@ -4,10 +4,10 @@
   "license": "MIT",
   "scripts": {
     "client": "webpack-dev-server --config ./webpack.config.babel.js --mode development",
-    "server": "nodemon --exec babel-node ./src/app.js",
+    "server": "nodemon --exec node ./src/app.js",
     "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.babel.js --mode production",
-    "start": "babel-node ./src/app.js"
+    "start": "node ./src/app.js"
   },
   "babel": {
     "presets": [

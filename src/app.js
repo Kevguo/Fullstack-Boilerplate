@@ -1,13 +1,13 @@
-import express from "express";
-import bodyParser from "body-parser";
-import { graphiqlExpress, graphqlExpress } from "apollo-server-express";
-import { makeExecutableSchema } from "graphql-tools";
-import mongoose from "mongoose";
-import path from "path";
+const express = require("express");
+const bodyParser = require("body-parser");
+const { graphiqlExpress, graphqlExpress } = require("apollo-server-express");
+const { makeExecutableSchema } = require("graphql-tools");
+const mongoose = require("mongoose");
+const path = require("path");
 
-import configs from "./configs";
-import typeDefs from "./schema";
-import resolvers from "./resolvers";
+const configs = require("./configs");
+const typeDefs = require("./schema");
+const resolvers = require("./resolvers");
 
 const schema = makeExecutableSchema({
   typeDefs,
